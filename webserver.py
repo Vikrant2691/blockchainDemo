@@ -46,24 +46,23 @@ class MyServer(BaseHTTPRequestHandler):
                 "<body>The amount transfer of "+str(amount)+" was not sent to address "+str(address)+" due an error </body><html>", "utf-8")) 
         if self.path=="/token": 
             address = data["address"] 
-            status=ethTransfer(address, amount)
+            status=tokenTransfer(address)
             if(status):
-                tokenTransfer(address)
                 self.send_response(201) 
                 self.send_header("Content-type", "text/html") 
                 self.end_headers() 
                 self.wfile.write(bytes("<html><head><title>Transfer Success</title></head>"+
-                    "<body>The amount of "+str(amount)+" was sent to address "+str(address)+"</body><html>", "utf-8")) 
+                    "<body>The amount was sent to address "+str(address)+"</body><html>", "utf-8")) 
             else:
                 self.send_response(503) 
                 self.send_header("Content-type", "text/html") 
                 self.end_headers() 
                 self.wfile.write(bytes("<html><head><title>Transfer Failure</title></head>"+
-                "<body>The amount transfer of "+str(amount)+" was not sent to address "+str(address)+" due an error </body><html>", "utf-8"))
+                "<body>The amount was not sent to address "+str(address)+" due an error </body><html>", "utf-8"))
 
 
 if __name__ == "__main__":        
-    # tokenTransfer("0x972e91330E79b111e1eFB878009Bd851339526Cd")
+    tokenTransfer("0x972e91330E79b111e1eFB878009Bd851339526Cd")
     # ethTransfer("0x972e91330E79b111e1eFB878009Bd851339526Cd", 1000)
     
 

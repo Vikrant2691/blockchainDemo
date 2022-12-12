@@ -37,42 +37,49 @@ def tokenTransfer(address):
     web3 = Web3(Web3.HTTPProvider(infuraUrl))
     res = web3.isConnected()
     if res:
+        try:
         #  check balance function works
-        bal = balanceOf(ownerAddress)
-        if web3.isConnected():
-            print('CONNECTED TO WEB3!!!!')
-            contract_instance = web3.eth.contract(address=contractAddress,abi=abi)
-            # decimals = 10 ** 18 hard coding!!  NOOOOO
-            targetAccount = web3.toChecksumAddress(address)
-            dec = 10 ** decimals()
-            bal = balanceOf(targetAccount)
-            targetBalance = bal / dec
-            transferValue = 1000 * dec
-            if targetBalance >=1000:
-                transferValue = 1 * dec
+            bal = balanceOf(ownerAddress)
+            if web3.isConnected():
+                print('CONNECTED TO WEB3!!!!')
+                contract_instance = web3.eth.contract(address=contractAddress,abi=abi)
+                # decimals = 10 ** 18 hard coding!!  NOOOOO
+                targetAccount = web3.toChecksumAddress(address)
+                dec = 10 ** decimals()
+                bal = balanceOf(targetAccount)
+                targetBalance = bal / dec
+                transferValue = 1000 * dec
+                if targetBalance >=1000:
+                    transferValue = 1 * dec
 
-            print("about to transfer " + str(transferValue/dec) + " " + symbol() + " to " + targetAccount)
-            # create a tx calling the transfer function in my token contract
-            nonce = web3.eth.getTransactionCount(ownerAddress)
+                print("about to transfer " + str(transferValue/dec) + " " + symbol() + " to " + targetAccount)
+                # create a tx calling the transfer function in my token contract
+                nonce = web3.eth.getTransactionCount(ownerAddress)
 
-            transaction = contract_instance.functions.transfer(
-            targetAccount, transferValue).buildTransaction({
-                'gas': 200000,
-                'gasPrice': web3.toWei('100', 'gwei'),
-                'from': ownerAddress,
-                'nonce': nonce,
-                'chainId': 5 #goerli chain id
-            })
+                transaction = contract_instance.functions.transfer(
+                targetAccount, transferValue).buildTransaction({
+                    'gas': 200000,
+                    'gasPrice': web3.toWei('100', 'gwei'),
+                    'from': ownerAddress,
+                    'nonce': nonce,
+                    'chainId': 5 #goerli chain id
+                })
 
-            #  sign the tx
-            signed_tx = web3.eth.account.sign_transaction(transaction, privateKey)
+                #  sign the tx
+                signed_tx = web3.eth.account.sign_transaction(transaction, privateKey)
 
-            #  submit the tx
-            tx_hash = web3.eth.send_raw_transaction(signed_tx.rawTransaction)
-            print('tx hash: ' + tx_hash.hex())
+                #  submit the tx
+                tx_hash = web3.eth.send_raw_transaction(signed_tx.rawTransaction)
+                print('tx hash: ' + tx_hash.hex())
 
-            web3.eth.waitForTransactionReceipt(tx_hash)
-            print('tx mined')
+                web3.eth.waitForTransactionReceipt(tx_hash)
+                print('tx mined')
+                return True
+            else:
+                print("WEB3 not connected!!!")
+                return False
+        except:
+            return False
 
 
 def ethTransfer(address, amountInEther):
