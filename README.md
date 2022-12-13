@@ -5,13 +5,13 @@ Token name is SHB_10403
 The python web service can be used to transfer tokens to an account provided by the user through Rest API calls.
 
 Data packet format:
-To transfer ethereum tokens '''http://0.0.0.0:8081/eth'''
+To transfer ethereum tokens http://0.0.0.0:8081/eth
 ```
 data {
     "address":"0xac4FafdA6A3A6B48b4cDC2a896acf8D104C81d6C"
     }
 ```
-To transfer custom tokens creted by the contract '''http://0.0.0.0:8081/token'''
+To transfer custom tokens creted by the contract http://0.0.0.0:8081/token
 ```
 data {
     "address":"0xac4FafdA6A3A6B48b4cDC2a896acf8D104C81d6C",
