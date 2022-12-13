@@ -6,8 +6,10 @@ Token name is SHB_10403
 
 docker pull and run
 ```
-docker run vison91/blockchain_demonstration
+docker pull vison91/blockchain_demonstration
+docker run -d -p 8081:8081 --name=blockchain_demonstration vison91/blockchain_demonstration
 ```
+
 ## Send tokens
 ```
 curl command for token transfer
