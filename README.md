@@ -51,7 +51,12 @@ curl --header "Content-Type: application/json" --request POST --data '{"address"
 
 ## Run via Docker
 
-
 ```
  docker compose up
+```
+
+## Docker hub image link
+
+```
+https://hub.docker.com/repository/docker/vison91/blockchain_demonstration
 ```
