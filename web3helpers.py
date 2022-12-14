@@ -93,21 +93,21 @@ def ethTransfer(address, amountInEther):
             nonce = web3.eth.getTransactionCount(ownerAddress)
             print("nonce (tx count) is " + str(nonce))
 
-            contract_instance = web3.eth.contract(address=contractAddress,abi=abi)
-                        
-            nonce = web3.eth.getTransactionCount(ownerAddress)
+            gasPrice = web3.toWei('100', 'gwei')
+            value = web3.toWei(amountInEther, 'ether')
 
-            transaction = contract_instance.functions.transfer(
-                targetAccount, amountInEther).buildTransaction({
-                    'gas': 200000,
-                    'gasPrice': web3.toWei('100', 'gwei'),
-                    'from': ownerAddress,
-                    'nonce': nonce,
-                    'chainId': 5 #goerli chain id
-                })
+            # build the tx
+            tx = {
+                'nonce': nonce,
+                'to': targetAccount,
+                'value': value,
+                'gas': 2000000,
+                'gasPrice': gasPrice,
+                'chainId': 5
+            }
 
             #  sign the tx
-            signed_tx = web3.eth.account.sign_transaction(transaction, privateKey)
+            signed_tx = web3.eth.account.sign_transaction(tx, privateKey)
 
             #  submit the tx
             tx_hash = web3.eth.send_raw_transaction(signed_tx.rawTransaction)
@@ -115,6 +115,9 @@ def ethTransfer(address, amountInEther):
 
             web3.eth.waitForTransactionReceipt(tx_hash)
             print('tx mined')
-            return True
+            return True;
         except:
-            return False
+            return False;
+    else:
+        print("WEB3 not connected!!!")
+        return False

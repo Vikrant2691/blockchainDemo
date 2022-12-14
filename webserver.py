@@ -62,7 +62,7 @@ class MyServer(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":        
-    tokenTransfer("0x972e91330E79b111e1eFB878009Bd851339526Cd")
+    # tokenTransfer("0x972e91330E79b111e1eFB878009Bd851339526Cd")
     # ethTransfer("0x972e91330E79b111e1eFB878009Bd851339526Cd", 1000)
     
 
