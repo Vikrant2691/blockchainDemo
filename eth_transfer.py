@@ -13,8 +13,7 @@ web3 = Web3(Web3.HTTPProvider(infuraUrl))
 if web3.isConnected():
     print('CONNECTED TO WEB3!!!!')
     amountInEther = "0.1"
-    # targetAddress = Web3.toChecksumAddress("0xac4FafdA6A3A6B48b4cDC2a896acf8D104C81d6C")
-    # targetAccount= Web3.toChecksumAddress("0xC1a7977959992982CbaAc3Cb5df4d97aaB3aCc53")
+    
     targetAccount = Web3.toChecksumAddress("0x9Dc94C63D3e437C4Abff038418230f045f72ad31")
 
     nonce = web3.eth.getTransactionCount(ownerAddress)

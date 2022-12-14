@@ -18,7 +18,8 @@ data {
     "amount":"0.05"
     }
 
-if the balance of target account is greated than 1000, then 1 token will be transfered. Otherwise 1000 token will be transfered
+If the balance of target account is greated than 1000, then 1 token will be transfered.
+Otherwise 1000 token will be transfered
 ```
 
 ## Smart Contract creation:
