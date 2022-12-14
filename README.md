@@ -36,17 +36,17 @@ SUPER_SECRET_PRIVATE_KEY= <super secret private key of the account holder>
 ## Send tokens
 Basic curl check
 ```
-curl http://localhost:8080/amiworking
+curl http://localhost:8081/amiworking
 ```
 Send tokens
 ```
 curl command for token transfer
-curl --header "Content-Type: application/json" --request POST --data '{"address":"0x972e91330E79b111e1eFB878009Bd851339526Cd"}' http://localhost:8080/token
+curl --header "Content-Type: application/json" --request POST --data '{"address":"0x972e91330E79b111e1eFB878009Bd851339526Cd"}' http://localhost:8081/token
 ```
 Send eth
 ```
 curl command for eth transfer
-curl --header "Content-Type: application/json" --request POST --data '{"address":"0xac4FafdA6A3A6B48b4cDC2a896acf8D104C81d6C", "amount":"0.05"}' http://localhost:8080/eth
+curl --header "Content-Type: application/json" --request POST --data '{"address":"0xac4FafdA6A3A6B48b4cDC2a896acf8D104C81d6C", "amount":"0.05"}' http://localhost:8081/eth
 ```
 
 ## Run via Docker
